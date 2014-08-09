@@ -1,0 +1,8 @@
+
+body { 
+	padding-top: 35px; /* 75px if no header */
+} 
+
+.navbar-brand {
+	font-family: consolas, courier new, monospace;
+}

@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Yay</title>
+	
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<link href="css/bootstrap.css" rel="stylesheet"/>
+	<link href="css/font-awesome.css" rel="stylesheet"/>
+	<link href="css/custom.css" rel="stylesheet"/>
+
+	<script src="js/jquery.js"></script>
+	<script src="js/bootstrap.js"></script>
+</head>
+<body>
+
+	<!-- Navbar! -->
+	<nav class="navbar navbar-default navbar-fixed-top navbar-inverse" role="navigation">
+		<div class="container">
+			<!-- Brand and toggle get grouped for better mobile display -->
+    		<div class="navbar-header">
+      			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#collapse-me">
+			        <span class="sr-only">Toggle navigation</span>
+			        <span class="icon-bar"></span>
+			        <span class="icon-bar"></span>
+			        <span class="icon-bar"></span>
+      			</button>
+			</div>
+		    <!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse navbar-right" id="collapse-me">
+  				<ul class="nav navbar-nav">
+    				<li class="active"><a href="#">Home</a></li>
+    				<li><a href="#">Example Code</a></li>
+    				<li><a href="#">Blog</a></li>
+    				<li><a href="#">Contact</a></li>
+				</ul>
+			</div>
+	  	</div>
+	</nav>
+
+	<!-- Main Content -->
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="page-header logo">
+					<h1><span class="fa fa-cube fa-lg"></span>&nbsp;tyler.lane.codes</h1>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-12">
+
+
+<!-- Nav tabs -->
+<ul class="nav nav-tabs" role="tablist">
+  <li class="active"><a href="#fraction" role="tab" data-toggle="tab">fraction.java</a></li>
+  <li><a href="#matrix" role="tab" data-toggle="tab">matrix.java</a></li>
+  <li><a href="#messages" role="tab" data-toggle="tab">Messages</a></li>
+  <li><a href="#settings" role="tab" data-toggle="tab">Settings</a></li>
+</ul>
+
+<!-- Tab panes -->
+<div class="tab-content">
+  <div class="tab-pane active" id="fraction">
+  	<pre>
+public class Fraction
+{
+    private final int numerator;
+    private final int denominator;
+
+    /*
+     *  Constructors
+     *      Numerator & denominator taken as arguments
+     *      Just numerator as argument, denominator assumed to be 1
+     *      Arg is Fraciton object, not two integers
+     *  
+     *  Arithmetic (Returns Fraction obj. unless noted)
+     *      Plus
+     *      Subtract
+     *      Multiply (two args)
+     *      Multiply (three args)
+     *      Divide
+     *      Equals (returns boolean)
+     *  
+     *  Other
+     *      Euclid_GCF, Finds the GCF of two numbers recursively
+     *      
+     *  Returns
+     *      Get_Numerator
+     *      Get_Denominator
+     *      toString
+     */
+    
+    
+    // Constructor (Automatically reduces)
+    public Fraction(int n, int d)
+    {
+        // First find the GCF of potential numerator & denominator
+        int divisor = Euclid_GCF(n, d);
+        
+        // Then divide both by the GCF
+        numerator = n / divisor;
+        denominator = d / divisor;
+    }
+    
+    // Constructor (Denominator is assumed to be 1)
+    public Fraction(int n)
+    {
+        numerator = n;
+        denominator = 1;
+    }
+    
+    // Constructor that takes a fraction as input
+    public Fraction (Fraction f)
+    {
+        int n = f.Get_Numerator();
+        int d = f.Get_Denominator();
+        
+        // First find the GCF of potential numerator & denominator
+        int divisor = Euclid_GCF(n, d);
+        
+        // Then divide both by the GCF
+        int sudo_numerator = n / divisor;
+        int sudo_denominator = d / divisor;
+        
+        if (sudo_denominator < 0)
+        {
+            numerator = sudo_numerator * -1;
+            denominator = sudo_denominator * -1;
+        }
+        else
+        {
+            numerator = sudo_numerator;
+            denominator = sudo_denominator;
+        }
+    }
+    
+    // Adds two fractions!
+    public static Fraction Add(Fraction term1, Fraction term2)
+    {
+        int new_numerator = (term1.Get_Numerator() * term2.Get_Denominator()) + (term2.Get_Numerator() * term1.Get_Denominator());
+        int new_denominator = term1.Get_Denominator() * term2.Get_Denominator();
+    
+        return new Fraction(new_numerator, new_denominator);
+    }
+    
+    // Subtracts two fractions!
+    public static Fraction Subtract(Fraction term1, Fraction term2)
+    {
+        int new_numerator = (term1.Get_Numerator() * term2.Get_Denominator()) - (term2.Get_Numerator() * term1.Get_Denominator());
+        int new_denominator = term1.Get_Denominator() * term2.Get_Denominator();
+    
+        return new Fraction(new_numerator, new_denominator);
+    }
+    
+    // Multiplies two fractions!
+    public static Fraction Multiply(Fraction term1, Fraction term2)
+    {
+        return new Fraction((term1.Get_Numerator() * term2.Get_Numerator()), (term1.Get_Denominator() * term2.Get_Denominator()));
+    }
+    
+    // Multiplies THREE fractions! :O
+    public static Fraction Multiply(Fraction term1, Fraction term2, Fraction term3)
+    {
+        return new Fraction(term1.Get_Numerator() * term2.Get_Numerator() * term3.Get_Numerator(), term1.Get_Denominator() * term2.Get_Denominator() * term3.Get_Denominator());
+    }
+    
+    // Divide two fractions! (Really just multiplies the first fraction by the reciprocal of the second)
+    public static Fraction Divide(Fraction term1, Fraction term2)
+    {
+        return new Fraction((term1.Get_Numerator() * term2.Get_Denominator()), (term1.Get_Denominator() * term2.Get_Numerator()));
+    }
+
+    // Check if two fractions are equal
+    public static boolean Equals(Fraction term1, Fraction term2)
+    {
+        // No need to worry since all fractions are automatically reduced
+        // Just compare numerators & denominators
+        return ((term1.Get_Numerator() == term2.Get_Numerator()) && (term1.Get_Denominator() == term2.Get_Denominator()));
+    }
+    
+    // Find the GCF of two numbers, via Euclid!
+    private int Euclid_GCF(int a, int b)
+    {
+        if (b == 0)
+            return a;
+        else
+            return Euclid_GCF(b, (a%b));
+    }
+    
+    // Return functions
+    public int Get_Numerator()      {return numerator;}
+    public int Get_Denominator()    {return denominator;}
+    
+    // toString
+    public String toString()
+    {
+        // Only show the denominator if fraction isn't over 1
+        if (denominator == 1)
+            return numerator + "";
+        else
+            return numerator + "/" + denominator;
+    }
+    
+}
+</pre>
+
+
+
+
+
+
+  </div>
+  <div class="tab-pane" id="matrix">
+  	<pre>
+
+import java.util.Random;
+
+public class Matrix
+{
+    private Fraction[][] A;     // Array of fractions
+    private int rows, columns;
+    
+    /*
+     * Constructors
+     *      Two integers, height & width, empty array
+     *      Two integers, and an array of Fractions
+     *      
+     *  Arithmetic (Two matrices as args)
+     *      Add
+     *      Multiply
+     *      Become_Zero_Matrix
+     *      Become_Identity_Matrix
+     *      Become_Random_Matrix, fill matrix with random fractions
+     *      Become-Random_Int_Matrix, fill matrix with random integers
+     *      Multiply_By_Scalar
+     *      Swap_Row
+     *      Echelon_Form
+     *      
+     *  Return
+     *      Row_Size
+     *      Col_Size
+     *      Return_Value (returns fraction obj)
+     *      toString
+     */
+    
+    // Constructor, blank matrix
+    public Matrix (int height, int width)
+    {
+        // Allocate memory for matrix
+        A = new Fraction[height][width];
+        rows = height;
+        columns = width;
+    }
+    
+    // Constructor, passing a Fraction array
+    public Matrix (Fraction[][] f)
+    {
+        A = f;
+        rows = f.length;
+        columns = f[0].length;
+    }
+
+    // Matrix becomes the sum of two matrices (assumes matrices are the correct size)
+    public static Matrix Add (Matrix B, Matrix C)
+    {   
+        Fraction sum[][] = new Fraction[B.Row_Size()][B.Col_Size()];
+        
+        for (int i=0; i<B.Row_Size(); i++)
+            for (int j=0; j<B.Col_Size(); j++)
+                sum[i][j] = new Fraction(Fraction.Add(B.Return_Value(i, j), (C.Return_Value(i, j))));
+            
+        return new Matrix (sum);
+    }
+    
+    // Multiply dem matricezzz
+    // System.out.println("(" + i + ", " + k + ") * (" + k + ", " + j + ")");
+    public static Matrix Multiply (Matrix B, Matrix C)
+    {
+        int new_row_size = B.Row_Size();
+        int new_col_size = C.Col_Size();
+        Fraction product[][] = new Fraction[new_row_size][new_col_size];
+        Fraction fracty = new Fraction(0);
+
+        for (int i=0; i<B.Row_Size(); i++)              // Iterate through B's rows
+            for (int j=0; j<C.Col_Size(); j++)          // Iterate through C's columns
+            {
+                for (int k=0; k<B.Col_Size(); k++)      // Iterate through each element
+                    fracty = Fraction.Add(fracty, Fraction.Multiply(B.Return_Value(i, k), C.Return_Value(k, j)));
+                
+                product[i][j] = fracty;
+                fracty = new Fraction(0);
+            }
+        
+        return new Matrix (product);
+    }   
+    
+    // Converts matrix to zero matrix
+    public void Become_Zero_Matrix()
+    {
+        // Fill the matrix up with zeroes
+        for (int i=0; i<rows; i++)
+            for (int j=0; j<columns; j++)
+                A[i][j] = new Fraction(0);
+    }
+    
+    // Converts matrix to identity matrix
+    public void Become_Identity_Matrix ()
+    {
+        // In order to be an identity matrix,
+        // The matrix must be a square
+        if (rows == columns)
+        {
+            // First become a zero matrix
+            Become_Zero_Matrix();
+            // Make the matrix diagonal 1's
+            for (int i=0; i<rows; i++)
+                A[i][i] = new Fraction(1);
+        }       
+    }
+    
+    // Fills matrix with random values from 0 to max-1
+    public void Become_Random_Matrix (int max)
+    {
+        // Create generator & integer to be randomized
+        Random generator = new Random();
+        int random_int = 0;
+        int random_int2 = 0;
+        
+        // Stick random values inside matrix!
+        for (int i=0; i<rows; i++)
+            for (int j=0; j<columns; j++)
+            {
+                random_int = generator.nextInt(max)+1;
+                random_int2 = generator.nextInt(max)+1;
+                A[i][j] = new Fraction(random_int, random_int2);
+            }
+    }
+    
+    // Fills matrix with random non-fractional values from 0 to max-1
+    public void Become_Random_Int_Matrix (int max)
+    {
+        // Create generator & integer to be randomized
+        Random generator = new Random();
+        int random_int = 0;
+        
+        // Stick random values inside matrix!
+        for (int i=0; i<rows; i++)
+            for (int j=0; j<columns; j++)
+            {
+                random_int = generator.nextInt(max)+1;
+                A[i][j] = new Fraction(random_int);
+            }
+    }
+    
+    // Scalar multiplication!
+    public void Multiply_By_Scalar (int scalar)
+    {
+        // Multiply each element in the matrix by the scalar
+        for (int i=0; i<rows; i++)
+            for (int j=0; j<columns; j++)
+                // In this case the numerator is multiplied by the scalar, the denominator stays the same
+                A[i][j] = new Fraction((A[i][j].Get_Numerator()*scalar), A[i][j].Get_Denominator());
+    }
+    
+    // Swaps row_a & row_b
+    public void Swap_Row (int row_a, int row_b)
+    {
+        
+        // Create a temporary row long enough
+        Fraction[] temp_row = new Fraction[columns];
+        
+        // Put row_a in the temporary row
+        for (int i=0; i<columns; i++)
+            temp_row[i] = A[row_a][i];
+        
+        // Put row_b where row_a was
+        for (int i=0; i<columns; i++)
+            A[row_a][i] = A[row_b][i];
+        
+        // Put row_a where row_b was
+        for (int i=0; i<columns; i++)
+            A[row_b][i] = temp_row[i];
+
+    }
+    
+    // Find the determinant for 1x1, 2x2 & 3x3 matrices
+    // Returns zero for any other dimension
+    public Fraction Find_Determinant()
+    {
+        // 1x1 Matrix
+        if ((rows == 1) && (columns == 1))  // Trivial!
+            return new Fraction(A[0][0]);
+        
+        // 2x2 Matrix
+        if ((rows == 2) && (columns == 2))
+            return new Fraction(Fraction.Subtract(Fraction.Multiply(A[0][0], A[1][1]), Fraction.Multiply(A[0][1], A[1][0])));
+
+        // 3x3 Matrix
+        if ((rows == 3) && (columns == 3))
+        {
+            Fraction aei = Fraction.Multiply(A[0][0], A[1][1], A[2][2]);
+            Fraction bfg = Fraction.Multiply(A[0][1], A[1][2], A[2][0]);
+            Fraction cdh = Fraction.Multiply(A[0][2], A[1][0], A[2][1]);
+            
+            Fraction gec = Fraction.Multiply(A[2][0], A[1][1], A[0][2]);
+            Fraction hfa = Fraction.Multiply(A[2][1], A[1][2], A[0][0]);
+            Fraction idb = Fraction.Multiply(A[2][2], A[1][0], A[0][1]);
+            
+            return new Fraction(
+                    Fraction.Subtract(
+                            Fraction.Add(aei, Fraction.Add(bfg, cdh)), 
+                            Fraction.Add(gec, Fraction.Add(hfa, idb))));
+        }
+        else
+            return new Fraction(0);
+    }
+    
+    // Echelon form (Gaussian Elimination)    
+    public void Echelon_Form()
+    {
+        // Go through the first column, looking for something that is not a zero,
+        // Swap it with the first row, & make it a 1.
+        Fraction zero = new Fraction(0);
+        
+        for (int i=0; i<columns; i++) // Going up to down
+        {
+            // Divide each element along the column by pivot
+            Fraction divisor = new Fraction(A[i][i]);
+            for (int j=i; j<rows; j++)  // Left to right, divide each element in the row by pivot
+                if (!(Fraction.Equals(divisor, zero)))
+                    A[i][j] = new Fraction(Fraction.Divide(A[i][j], divisor));
+
+            for (int h=i+1; h<rows; h++)  // From pivot row down
+            {
+                divisor = Fraction.Multiply(A[h][i], new Fraction(-1));
+                for (int j=i; j<columns; j++)
+                    A[h][j] = new Fraction(Fraction.Add(A[h][j], Fraction.Multiply(divisor, A[i][j])));
+            }
+        }
+    }
+    
+    
+    // Return functions & toString
+    public int Row_Size ()                                  {return rows; }
+    public int Col_Size ()                                  {return columns; }
+    public Fraction Return_Value (int row_pos, int col_pos) {return A[row_pos][col_pos]; }
+    
+    public String toString()
+    {
+        String fancy = "";
+        
+        for (int i=0; i<rows; i++)
+        {
+            for (int j=0; j<columns; j++)
+                fancy = (fancy + A[i][j] + "\t ");
+            fancy = fancy + "\n";
+        }
+        
+        return fancy;
+    }
+
+}
+
+  	</pre>
+  </div>
+  <div class="tab-pane" id="messages">Yeah!</div>
+  <div class="tab-pane" id="settings">...</div>
+</div>
+
+			</div>
+		</div>
+
+	</div>
+</body>
+</html>

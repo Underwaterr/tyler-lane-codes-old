@@ -1,0 +1,20 @@
+
+Blackjack with GUI
+
+Written to demonstrate proficiency in data structures and GUI in Java for college course. 
+
+Linear Algebra Concepts
+
+The most mathematically-intensive program I've written so far, done as a proposed alternative for coursework required in a Linear Algebra independent study. Demonstrates applied algorithms related to linear algebra including scalar multiplication, determinant derivation and gaussian elimination.
+
+Project Euler Solutions
+
+As a fun side-project, Project Euler provides a large number of mathematical challenges solvable through computation. Demonstrates aptitude in solving abstract mathematical problems efficiently. 
+
+Ruby on Rails
+
+This website was written using Ruby on Rails!
+
+Todo List in AngularJS
+
+Demonstrates basic proficiency in AngularJS with archetypal 'Todo List' example. 
