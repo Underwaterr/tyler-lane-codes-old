@@ -7,12 +7,13 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	
-	<link href="css/bootstrap-yeti.css" rel="stylesheet"/>
+	<link href="css/bootstrap-yeti.css" rel="stylesheet"	id="theme" />
 	<link href="css/font-awesome.css" 	rel="stylesheet"/>
 	<link href="css/custom.css" 		rel="stylesheet"/>
 
-	<script src="js/jquery.js">		</script>
-	<script src="js/bootstrap.js">	</script>
+	<script src="js/jquery.js">			</script>
+	<script src="js/bootstrap.js">		</script>
+	<script src="js/theme-selector.js"> </script>
 </head>
 <body>
 
@@ -22,6 +23,17 @@
     		<div class="navbar-header">
 				<a href="http://tyler.lane.codes" class="navbar-brand"><span class="fa fa-cube fa-lg"></span>&nbsp;tyler.lane.codes</a>
 			</div>
+			<ul class="nav navbar-nav navbar-right">
+			<li class="dropdown">
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown">Change Theme<span class="caret"></span></a>
+				<ul class="dropdown-menu" role="menu">
+					<li><a href="#" class="theme-selector"	id="yeti">		Yeti 		</a></li>
+					<li><a href="#" class="theme-selector"	id="cyborg">	Cyborg 		</a></li>
+					<li><a href="#" class="theme-selector"	id="cosmo">		Cosmo 		</a></li>
+					<li><a href="#" class="theme-selector"	id="readable">	Readable 	</a></li>
+				</ul>
+			</li>
+			</ul>
 	  	</div>
 	</nav>
 
@@ -31,6 +43,46 @@
 			<div class="col-xs-12">
 				<div class="page-header">
 					<h2> Full-Stack Web Developer <small>Available for Hire! <!--a href="#">Contact Me!</a>--></small></h2>
+					<h3>
+						<strong>Contact:</strong>
+						<small>
+							<!-- Email Circle -->
+							<a href="javascript:alert('Todo!');">
+								<span class="fa-stack fa-lg">
+									<span class="fa fa-circle fa-stack-2x"></span>
+									<span class="fa fa-envelope fa-stack-1x fa-inverse"></span>
+								</span>
+							</a>
+							<!-- Facebook Circle -->
+							<a href="https://www.facebook.com/underwaterr">
+								<span class="fa-stack fa-lg">
+									<span class="fa fa-circle fa-stack-2x"></span>
+									<span class="fa fa-facebook-square fa-stack-1x fa-inverse"></span>
+								</span>
+							</a>
+							<!-- Twitter Circle -->
+							<a href="https://www.twitter.com/sldpotato">
+								<span class="fa-stack fa-lg">
+									<span class="fa fa-circle fa-stack-2x"></span>
+									<span class="fa fa-twitter fa-stack-1x fa-inverse"></span>
+								</span>
+							</a>
+							<!-- LinkedIn Circle -->
+							<a href="http://dft.ba/-tyler-linkedin">
+								<span class="fa-stack fa-lg">
+									<span class="fa fa-circle fa-stack-2x"></span>
+									<span class="fa fa-linkedin fa-stack-1x fa-inverse"></span>
+								</span>
+							</a>
+							<!-- GitHub Circle -->
+							<a href="https://github.com/underwaterr">
+								<span class="fa-stack fa-lg">
+									<span class="fa fa-circle fa-stack-2x"></span>
+									<span class="fa fa-github fa-stack-1x fa-inverse"></span>
+								</span>
+							</a>
+						</small>
+					</h3>
 				</div>
 			</div>
 		</div>
@@ -131,7 +183,7 @@
 					  	</a>
 
 						<!-- AngularJS Todo List -->
-						<a href="modals/angularjs-todo.html" class="list-group-item" data-toggle="modal" data-target="#angularjs-todo">
+						<!--a href="modals/angularjs-todo.html" class="list-group-item" data-toggle="modal" data-target="#angularjs-todo">
 						  	<div class="media">
 					      		<img class="media-object pull-right" src="" alt="[pic]">
 						    	<div class="media-body">
@@ -141,44 +193,14 @@
 						      		Demonstrates basic proficiency in AngularJS with archetypal 'Todo List' example. 
 						    	</div>
 						  	</div>
-					  	</a>
+					  	</a-->
+
+					  	<div class="list-group-item">
+					  		<h4>More to be added!</h4>
+				  		</div>
 
 					</div>
 				</div>
-
-				<!-- Links Panel -->
-				<div class="panel panel-default">
-  					<!-- Default panel contents -->
-  					<div class="panel-heading">
-  						<h3 class="panel-title">Links</h3>
-					</div>
-				  	<div class="list-group">
-					    <a href="https://www.facebook.com/underwaterr" 	class="list-group-item"><h4><span class="fa fa-lg fa-fw fa-facebook-square"></span>Facebook</h4></a>
-					    <a href="https://www.twitter.com/sldpotato" 	class="list-group-item"><h4><span class="fa fa-lg fa-fw fa-twitter">		</span>Twitter </h4></a>
-					    <a href="http://dft.ba/-tyler-linkedin" 		class="list-group-item"><h4><span class="fa fa-lg fa-fw fa-linkedin">		</span>LinkedIn</h4></a>
-					    <a href="https://github.com/underwaterr" 		class="list-group-item"><h4><span class="fa fa-lg fa-fw fa-github-square">	</span>GitHub?!</h4></a>
-				  	</div>
-				</div>
-
-				<!-- Nonfunctioning Contact Panel! -->
-				<!--div class="panel panel-default">
-					<div class="panel-heading">
-						<h4 class="panel-title">Contact</h4>
-					</div>
-  					<div class="panel-body">
-						<form role="form" action="mailto:email@email.com" method="post" enctype="text/plain">
-								<div class="form-group">
-									<label for="exampleInputEmail">Email address</label>
-									<input type="email" class="form-control" id="exampleInputEmail" placeholder="Enter email">
-								</div>
-								<div class="form-group">
-									<label for="exampleInputText">Message</label>
-									<input type="text" class="form-control" id="exampleInputText" placeholder="Enter message">
-								</div>
-								<button type="submit" class="btn btn-default">Submit</button>
-						</form>
-					</div>
-				</div -->
 
 			</div>
 

@@ -1,8 +1,19 @@
 
+/* Shift page content down from under fixed navbar */
 body { 
-	padding-top: 35px; /* 75px if no header */
+	padding-top: 35px; /* 75px if the navbar doesn't have a header */
 } 
 
+/* Font for Brand */
 .navbar-brand {
 	font-family: consolas, courier new, monospace;
+}
+
+/* Turn off underline for anchors on hover/focus */
+a:hover, a:focus {
+	text-decoration: none;
+}
+
+li .dropdown-header > a {
+	display: inline;
 }
