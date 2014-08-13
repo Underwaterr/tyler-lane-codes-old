@@ -1,8 +1,16 @@
 
 /* Shift page content down from under fixed navbar */
-body { 
-	padding-top: 35px; /* 75px if the navbar doesn't have a header */
-} 
+@media(max-width:767px){
+	body {
+		padding-top: 75px;
+	}
+}
+@media(min-width:768px){
+	body { 
+		padding-top: 35px; 
+	} 
+}
+
 
 /* Font for Brand */
 .navbar-brand {
