@@ -9,18 +9,51 @@
 
     <!-- Tabs -->
     <ul class="nav nav-tabs" role="tablist">
-    	<li class="active"><a href="#matrix-multiplication"    role="tab" data-toggle="tab">Matrix Multiplication</a></li>
+    	<li class="active"><a href="#multiply-by-scalar"    role="tab" data-toggle="tab">Multiply By Scalar</a></li>
     	<li>               <a href="#gaussian-elimination"     role="tab" data-toggle="tab">Gaussian Elimination </a></li>
     </ul>
 
     <!-- Tab Panes -->
     <div class="tab-content">
-    	<div class="tab-pane active" id="matrix-multiplication">
-        <pre>Yay</pre>
+    	<div class="tab-pane active" id="multiply-by-scalar">
+            <pre>
+public void Multiply_By_Scalar (int scalar)
+{
+    // Multiply each element in the matrix by the scalar
+    for (int i=0; i&lt;rows; i++)
+        for (int j=0; j&lt;columns; j++)
+            // In this case the numerator is multiplied by the scalar, the denominator stays the same
+            A[i][j] = new Fraction((A[i][j].Get_Numerator()*scalar), A[i][j].Get_Denominator());
+}
+            </pre>
     	</div>
 
     	<div class="tab-pane" id="gaussian-elimination">
-            <pre>So simple</pre>
+            <pre>
+// Echelon form (Gaussian Elimination)    
+public void Echelon_Form()
+{
+    // Go through the first column, looking for something that is not a zero,
+    // Swap it with the first row, & make it a 1.
+    Fraction zero = new Fraction(0);
+    
+    for (int i=0; i&lt;columns; i++) // Going up to down
+    {
+        // Divide each element along the column by pivot
+        Fraction divisor = new Fraction(A[i][i]);
+        for (int j=i; j&lt;rows; j++)  // Left to right, divide each element in the row by pivot
+            if (!(Fraction.Equals(divisor, zero)))
+                A[i][j] = new Fraction(Fraction.Divide(A[i][j], divisor));
+
+        for (int h=i+1; h&lt;rows; h++)  // From pivot row down
+        {
+            divisor = Fraction.Multiply(A[h][i], new Fraction(-1));
+            for (int j=i; j&lt;columns; j++)
+                A[h][j] = new Fraction(Fraction.Add(A[h][j], Fraction.Multiply(divisor, A[i][j])));
+        }
+    }
+}
+            </pre>
     	</div>
     </div>
 </div>

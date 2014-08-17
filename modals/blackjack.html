@@ -4,23 +4,75 @@
 </div>
 <div class="modal-body">
 	<h4><a href="./zip/blackjack.zip">Download source code as a .zip file</a></h4>
+    <img src="./img/blackjack.png" class="img-responsive center-block">
 	<p>Final project for college. Demonstrates proficiency in data structures and GUI in Java. </p>
 	<h4>Example Code Snippets</h4>
 
     <!-- Tabs -->
     <ul class="nav nav-tabs" role="tablist">
-    	<li class="active"><a href="#matrix-multiplication"    role="tab" data-toggle="tab">Matrix Multiplication</a></li>
-    	<li>               <a href="#gaussian-elimination"     role="tab" data-toggle="tab">Gaussian Elimination </a></li>
+    	<li class="active"><a href="#shuffle"  role="tab" data-toggle="tab">Shuffle</a></li>
+    	<li>               <a href="#stay"     role="tab" data-toggle="tab">Stay </a></li>
     </ul>
 
     <!-- Tab Panes -->
     <div class="tab-content">
-    	<div class="tab-pane active" id="matrix-multiplication">
-        <pre>Yay</pre>
+    	<div class="tab-pane active" id="shuffle">
+            <pre>
+// Shuffle cards in the deck
+public void shuffle ()
+{
+    // Create a random number generator
+    Random random_generator = new Random();
+
+    // For each card in the deck
+    for (int i=0; i<=top; i++)
+    {
+        // Create a random number
+        int random_number = random_generator.nextInt(top);   
+        // Copy first card in a temporary spot
+        Card temp = this.deck[i];
+        // Copy second card into where first card was
+        this.deck[i] = this.deck[random_number];
+        // Copy temporary card into where the second card was
+        this.deck[random_number] = temp;
+    }  
+}
+            </pre>
     	</div>
 
-    	<div class="tab-pane" id="gaussian-elimination">
-            <pre>So simple</pre>
+    	<div class="tab-pane" id="stay">
+            <pre>
+public void stay_action()
+{
+    while (Game.dealerTotal()&lt;17)
+        Game.dealerHit();
+
+    Game.displayDealerHand();
+    
+    // Update the dealer's score
+    TextSlot[1].setText(" Score: " + Game.dealerTotal());
+
+    // If the dealer busts
+    if (Game.dealerTotal()>21)
+    {
+        hit_button.setEnabled(false);
+        stay_button.setEnabled(false);
+        frame2.setTitle("Dealer busted. You win!");
+    }
+    else if (Game.dealerTotal()>=Game.playerTotal())
+    {
+        hit_button.setEnabled(false);
+        stay_button.setEnabled(false);
+        frame2.setTitle("You lose!");
+    }
+    else if (Game.dealerTotal()&lt;Game.playerTotal())
+    {
+        hit_button.setEnabled(false);
+        stay_button.setEnabled(false);
+        frame2.setTitle("You win!");
+    } 
+}
+            </pre>
     	</div>
     </div>
 </div>
